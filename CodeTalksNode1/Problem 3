@@ -1,0 +1,34 @@
+//What is happening in the following code snippet?
+
+
+const getTodos = () => { //The getTodos function is declared using an arrow function syntax.
+
+ const request = new XMLHttpRequest();// This object allows you to send HTTP requests to a server.
+
+
+request.addEventListener('readystatechange', ()=>{ //The event being listened to is the readystatechange event, 
+    //which fires whenever the state of the request changes.
+
+
+ if(request.readyState === 4 && request.status ===200){
+   console.log(request.responseText)//which means the request is complete) and the status property is 200 (which means the request was successful), 
+   //it logs the response text of the request to the console using console.log(request.responseText)
+    }
+   else if (request.readyState === 4){
+     console.log('could not fetch the data');
+   }
+});
+// It specifies the HTTP method as GET and the URL from which to retrieve the data. In this case, 
+//it's requesting data from the URL "https://jsonplaceholder.typicode.com/todos/".
+
+request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
+request.send();
+}
+
+
+
+
+getTodos();
+getTodos();
+
+

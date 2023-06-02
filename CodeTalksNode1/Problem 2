@@ -1,0 +1,35 @@
+//What is happening in the following code snippet?
+
+const {readFile, writeFile} = require('fs');
+//imports two functions, readFileSync and writeFileSync, from the 'fs' module. 
+//These functions allow synchronous reading and writing of files, The curly braces
+//are a technique called object destructuring, which allows you to extract specific properties or functions from an object.
+
+console.log('start'); //This line simply logs the string "start" to the console.
+readFile('./content/first.txt','utf8', (err, result)=> {
+    //function is called with three arguments: the path to the file to be read ('./content/first.txt'), the encoding to be used ('utf8'),
+    // and a callback function. The callback function is executed once the file reading operation is completed. If there is an error during the operation, 
+    //the err parameter will contain the error object. Otherwise, the result parameter will contain the contents of the file.
+   if (err) {
+       console.log(err);
+       return 
+   }
+   const first = result;
+   console.log(result);
+   readFile('./content/second.txt','utf8', (err, result)=> {
+       if (err) {
+           console.log(err);
+           return 
+       }
+       const second = result;
+       console.log(result);
+       writeFile('./content/result-async.txt', `Here is the result : ${first}, ${second}`,(err, result) => {
+        //write the result to the result-async.txt file. It takes three arguments: the path to the file to be written ('./content/result-async.txt')
+           if (err) {
+               console.log(err);
+               return 
+           }
+           console.log('done with the task');//The callback function is called once the writing operation is completed. 
+           //If there is an error, it logs the error. Otherwise, it logs "done with the task".
+       }
+       );

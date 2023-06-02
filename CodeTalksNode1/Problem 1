@@ -1,0 +1,26 @@
+//What is happening in the following code snippet?
+
+const {readFileSync, writeFileSync} = require('fs'); 
+//imports two functions, readFileSync and writeFileSync, from the 'fs' module. 
+//These functions allow synchronous reading and writing of files, The curly braces
+//are a technique called object destructuring, which allows you to extract specific properties or functions from an object.
+
+
+const fs = require('fs'); // here it imports the entire fs module itself, This is done to access other functionalities provided by the module if needed in the future.
+
+
+const first = readFileSync('./content/first.txt','utf8')  // A function to read the contents of two files
+const second = readFileSync('./content/second.txt','utf8')
+
+
+console.log(first, second);
+// logs the content of the first and second variables to the console. It will display the contents of both files in the order they were read.
+
+writeFileSync('./content/result-sync.txt', `Here is the result : ${first}, ${second}`);
+//write the result to a file named 'result-sync.txt' in the './content/' directory. The result is a string generated using a template literal, 
+//which includes the values of the first and second variables. The file will be created if it doesn't exist, and if it already exists, its content will be overwritten.
+
+writeFileSync('./content/result-sync.txt', `Here is the result : ${first}, ${second}`,{flag: 'a'});
+//The option {flag: 'a'} specifies that the file should be opened in append mode. As a result, the content will be added to the end of the file 
+//rather than overwriting its existing content.
+

@@ -1,0 +1,20 @@
+
+
+var mysql=require('mysql');//This line imports the mysql module, which allows Node.js to interact with MySQL databases.
+var connection=mysql.createConnection({//function is called with an object that contains the connection details everything below
+  host:'localhost',
+  user:'your username',
+  password:'your password',
+  database:'your database name'
+});
+connection.connect(function(error){//function establishes a connection to the MySQL database server. It takes a callback function as an argument,
+    // which will be executed once the connection attempt is complete.
+  if(!!error){
+    console.log(error);//If there is an error during the connection, the error message will be logged to the console. 
+    //Otherwise, the message "Connected! :)" will be logged.
+  }else{
+    console.log('Connected!:)');
+  }
+}); 
+module.exports = connection; //This line exports the connection object so that it can be imported and used in other files.
+
